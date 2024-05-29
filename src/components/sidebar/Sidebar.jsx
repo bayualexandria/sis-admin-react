@@ -114,7 +114,7 @@ function Sidebar() {
             >
               <div className="flex flex-col gap-y-2">
                 <li className="flex justify-center md:justify-between">
-                  <Link to="/data/guru" className="text-sm">
+                  <Link to="/guru" className="text-sm">
                     Guru
                   </Link>
                 </li>

@@ -5,8 +5,9 @@ import Home from "./pages/Home";
 import Login from "./pages/auth/Login";
 import Cookies from "js-cookie";
 import Register from "./pages/auth/Register";
-import DataGuru from "./pages/guru/DataGuru";
 import Profile from "./pages/profile/Profile";
+import Index from "./pages/siswa/Index";
+import GetById from "./pages/siswa/GetById";
 
 function App() {
   // function statusUser() {
@@ -48,10 +49,18 @@ function App() {
           }
         />
         <Route
-          path="/data/guru"
+          path="/siswa"
           element={
             <PrivateRoute>
-              <DataGuru />
+              <Index />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/siswa/:nis"
+          element={
+            <PrivateRoute>
+              <GetById />
             </PrivateRoute>
           }
         />

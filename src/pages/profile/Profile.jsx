@@ -27,8 +27,6 @@ function Profile() {
   };
   useEffect(() => {
     userProfile();
-    // updateProfile();
-    // console.log("profile updated", user.nama);
   });
 
   const [nama, setNama] = useState("");
@@ -125,7 +123,7 @@ function Profile() {
                   className="flex flex-col gap-y-5"
                 >
                   <div className="flex flex-col gap-y-2">
-                    <label htmlFor="nip" className="text-sm">
+                    <label htmlFor="nip" className="text-sm font-bold">
                       NIP
                     </label>
                     <input
@@ -138,7 +136,7 @@ function Profile() {
                     />
                   </div>
                   <div className="flex flex-col gap-y-2">
-                    <label htmlFor="nama" className="text-sm">
+                    <label htmlFor="nama" className="text-sm font-bold">
                       Nama Lengkap
                     </label>
                     <input
@@ -149,7 +147,9 @@ function Profile() {
                     />
                   </div>
                   <div className="flex flex-col gap-y-2">
-                    <label htmlFor="jenis_kelamin">Jenis Kelamin</label>
+                    <label htmlFor="jenis_kelamin" className="text-sm font-bold">
+                      Jenis Kelamin
+                    </label>
                     <div className="flex flex-row gap-x-5">
                       <div className="flex flex-row gap-x-3">
                         <input
@@ -175,7 +175,7 @@ function Profile() {
                     </div>
                   </div>
                   <div className="flex flex-col gap-y-2">
-                    <label htmlFor="no_hp" className="text-sm">
+                    <label htmlFor="no_hp" className="text-sm font-bold">
                       No.Handphone
                     </label>
                     <input
@@ -186,7 +186,7 @@ function Profile() {
                     />
                   </div>
                   <div className="flex flex-col gap-y-3 md:gap-x-3">
-                    <label htmlFor="image_profile" className="text-sm">
+                    <label htmlFor="image_profile" className="text-sm font-bold">
                       Gambar profile
                     </label>
 
@@ -208,7 +208,7 @@ function Profile() {
                   </div>
 
                   <div className="flex flex-col gap-y-2">
-                    <label htmlFor="alamat" className="text-sm">
+                    <label htmlFor="alamat" className="text-sm font-bold">
                       Alamat
                     </label>
                     <textarea
@@ -220,7 +220,7 @@ function Profile() {
                   </div>
                   <button
                     type="submit"
-                    className="outline-none rounded-full bg-sky-500 text-white font-bold text-sm py-1.5 border border-sky-500 hover:bg-white hover:text-sky-500 transition duration-200"
+                    className="outline-none rounded-full bg-sky-500 text-white font-bold text-sm py-2 border border-sky-500 hover:bg-white hover:text-sky-500 transition duration-200"
                   >
                     {loading ? (
                       <div className="flex flex-row items-center justify-center gap-x-2">

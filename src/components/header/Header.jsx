@@ -76,7 +76,7 @@ function Header() {
       {user == null && <Navigate to="/login" replace={true} />}
 
       <ul className="flex justify-end md:gap-56">
-        <li className="flex items-center justify-between gap-4 py-2">
+        <li className="flex items-center justify-between gap-x-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="w-6 h-6 md:w-7 md:h-7 text-primary"
@@ -115,6 +115,7 @@ function Header() {
                 <img
                   src={`http://127.0.0.1:8000/storage/${dataUser.image_profile}`}
                   alt="profile"
+                  className="w-full"
                 />
               </div>
             ) : (
@@ -141,7 +142,7 @@ function Header() {
           <div
             className={`${
               show ? "block" : "hidden"
-            } absolute right-3 top-10 md:top-16`}
+            } absolute right-3 top-16 md:top-16`}
           >
             <div className="flex flex-col rounded-md shadow-md px-5 py-3 bg-slate-50 gap-y-3">
               <div className="flex flex-row justify-between items-center gap-x-3 cursor-pointer">
@@ -166,27 +167,32 @@ function Header() {
                 </svg>
                 <p className="text-sm text-slate-500">Setting</p>
               </div>
-              <Link
-                to="/profile"
-                className="flex flex-row justify-between items-center gap-x-3 cursor-pointer"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="w-6 h-6 text-slate-500"
+              {dataUser ? (
+                <Link
+                  to="/profile"
+                  className="flex flex-row justify-between items-center gap-x-3 cursor-pointer"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-                  />
-                </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="w-6 h-6 text-slate-500"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                    />
+                  </svg>
 
-                <p className="text-sm text-slate-500">Profile</p>
-              </Link>
+                  <p className="text-sm text-slate-500">Profile</p>
+                </Link>
+              ) : (
+                ""
+              )}
+
               <div
                 className="flex flex-row justify-between items-center gap-x-3 cursor-pointer"
                 onClick={popUpLogoutButton}
