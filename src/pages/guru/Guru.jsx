@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from "react";
 import Main from "../../components/Main";
-import DataTable from "react-data-table-component";
 import Cookies from "js-cookie";
 import axios from "axios";
+import DataTable from "react-data-table-component";
 import { Link } from "react-router-dom";
 
-function Index() {
-  const [user, setUser] = useState([]);
-  const [columns, setColumns] = useState([]);
+function Guru() {
+  const [guru, setGuru] = useState([]);
+  const [column, setColumn] = useState([]);
+  const [filter, setFilter] = useState([]);
   const [pending, setPending] = useState(true);
   const [search, setSearch] = useState();
-  const [filter, setFilter] = useState([]);
 
-  const dataUser = async () => {
+  const dataGuru = async () => {
     const dataToken = Cookies.get("authentication");
     const token = dataToken.split(",");
+
     try {
       const response = await axios
-        .get("http://127.0.0.1:8000/api/siswa", {
+        .get("http://127.0.0.1:8000/api/guru", {
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + token[0],
@@ -25,25 +26,23 @@ function Index() {
         })
         .then((res) => res.data);
       console.log(response.data);
-      setUser(response.data);
       setFilter(response.data);
-    } catch (error) {
-      console.log(error.message);
-    }
+      setGuru(response.data);
+    } catch (error) {}
   };
 
   useEffect(() => {
-    dataUser();
+    dataGuru();
     const timeout = setTimeout(() => {
-      setColumns([
+      setColumn([
         {
           name: "Nama Lengkap",
           selector: (row) => row.nama,
           sortable: true,
         },
         {
-          name: "NIS",
-          selector: (row) => row.nis,
+          name: "NIP",
+          selector: (row) => row.nip,
           sortable: true,
         },
         {
@@ -65,7 +64,7 @@ function Index() {
           name: "",
           selector: (row) => (
             <div className="flex flex-row gap-x-3">
-              <Link to={`/siswa/${row.nis}`}>
+              <Link to={`/guru/${row.nip}`}>
                 <div className="w-6 h-6 rounded-full shadow-md flex justify-center items-center border border-sky-500 hover:text-white text-sky-500 hover:bg-sky-500 transition duration-200">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -106,17 +105,16 @@ function Index() {
           sortable: true,
         },
       ]);
-
       setPending(false);
     }, 2000);
     return () => clearTimeout(timeout);
   }, []);
 
   useEffect(() => {
-    const result = user.filter((item) => {
+    const result = guru.filter((item) => {
       return (
         item.nama.toLowerCase().match(search.toLowerCase()) ||
-        item.nis.toLowerCase().match(search.toLowerCase()) ||
+        item.nip.toLowerCase().match(search.toLowerCase()) ||
         item.jenis_kelamin.toLowerCase().match(search.toLowerCase()) ||
         item.no_hp.toLowerCase().match(search.toLowerCase()) ||
         item.alamat.toLowerCase().match(search.toLowerCase())
@@ -124,24 +122,21 @@ function Index() {
     });
     setFilter(result);
   }, [search]);
-
-  const exportExcel = () => {
-   
-  };
+  const exportExcel = () => {};
 
   return (
     <Main>
       <div className="grid grid-cols-6 bg-slate-100">
         <div className="col-span-5 col-start-2 p-5 overflow-y-auto">
           <div className="flex justify-start py-4">
-            <h4 className="font-bold text-xl text-slate-500">Data Siswa</h4>
+            <h4 className="font-bold text-xl text-slate-500">Data Guru</h4>
           </div>
           <div className="flex flex-col gap-y-10">
             <div className="grid gap-5 grid-col-1 ">
               <div className="p-5 transition duration-300 bg-white rounded-lg shadow-md ">
                 <DataTable
                   data={filter}
-                  columns={columns}
+                  columns={column}
                   progressPending={pending}
                   pagination
                   selectableRowsHighlight
@@ -175,7 +170,10 @@ function Index() {
                         </div>
                       </div>
                       <div className="flex flex-row">
-                        <div className="rounded-md p-1 flex flex-row justify-center items-center font-bold border border-lime-500 text-sm gap-x-1 hover:bg-white hover:text-lime-500 cursor-pointer bg-lime-500 text-white transition duration-200" onClick={exportExcel}>
+                        <div
+                          className="rounded-md p-1 flex flex-row justify-center items-center font-bold border border-lime-500 text-sm gap-x-1 hover:bg-white hover:text-lime-500 cursor-pointer bg-lime-500 text-white transition duration-200"
+                          onClick={exportExcel}
+                        >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -205,4 +203,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default Guru;

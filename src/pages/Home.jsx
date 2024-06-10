@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 function Home() {
   return (
     <Main>
-      <div className="grid grid-cols-5 bg-slate-100">
-        <div className="col-span-4 col-start-2 py-5 pr-5  overflow-y-auto">
+      <div className="grid grid-cols-6 bg-slate-100">
+        <div className="col-span-5 col-start-2 p-5 overflow-y-auto">
           <div className="flex justify-start pb-4">
             <h4 className="font-bold text-base text-slate-500">Dashboard</h4>
           </div>

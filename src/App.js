@@ -8,6 +8,8 @@ import Register from "./pages/auth/Register";
 import Profile from "./pages/profile/Profile";
 import Index from "./pages/siswa/Index";
 import GetById from "./pages/siswa/GetById";
+import Guru from "./pages/guru/Guru";
+import UpdateDataGuru from "./pages/guru/UpdateDataGuru";
 
 function App() {
   // function statusUser() {
@@ -48,6 +50,7 @@ function App() {
             </PrivateRoute>
           }
         />
+        {/* data siswa */}
         <Route
           path="/siswa"
           element={
@@ -64,6 +67,25 @@ function App() {
             </PrivateRoute>
           }
         />
+        {/* data siswa */}
+        {/* data guru */}
+        <Route
+          path="/guru"
+          element={
+            <PrivateRoute>
+              <Guru />
+            </PrivateRoute>
+          }
+        />
+         <Route
+          path="/guru/:nip"
+          element={
+            <PrivateRoute>
+              <UpdateDataGuru />
+            </PrivateRoute>
+          }
+        />
+        {/* data guru */}
         <Route
           path="/profile"
           element={
